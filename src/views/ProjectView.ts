@@ -130,7 +130,7 @@ async function createProject() {
 
     if(headerDiv)
     {
-        headerDiv.innerHTML = '<h1>Dodaj projekt1</h1>'
+        headerDiv.innerHTML = '<h1>Dodaj projekt</h1>'
     }
     if(contentDiv)
     {

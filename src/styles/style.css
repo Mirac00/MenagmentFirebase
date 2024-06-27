@@ -1,6 +1,8 @@
+/* Ogólne style */
 #app {
-  margin: 100px 25% 0px;
+  margin: 100px 25% 0;
 }
+
 .right-align {
   float: right;
 }
@@ -12,19 +14,19 @@ table {
 .hidden {
   display: none;
 }
+
 .container {
   max-width: 500px;
   margin: 50px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
+  background-color: #fff;
 }
 
 #top-bar {
   height: 20px;
-
-  float:right
-
+  float: right;
 }
 
 #login {
@@ -33,12 +35,12 @@ table {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-
-
+  background-color: #fff;
 }
+
 .login-field {
   width: 200px;
-  float:left
+  float: left;
 }
 
 #toggle-dark-mode {
@@ -47,35 +49,87 @@ table {
 
 body.dark-mode {
   background-color: #121212;
-  color: rgb(23, 21, 162);
+  color: #e0e0e0;
 }
 
 body.dark-mode .card {
-  background-color: #121212;
-  border-color: rgb(23, 21, 162);
+  background-color: #1e1e1e;
+  border-color: #616161;
 }
 
-body.dark-mode input[type="text"],body.dark-mode input[type="password"],body.dark-mode .btn, body.dark-mode select {
-  background-color: #121212;
-  color: rgb(23, 21, 162);
-  border-color: rgb(23, 21, 162);
+body.dark-mode input[type="text"], 
+body.dark-mode input[type="password"], 
+body.dark-mode .btn, 
+body.dark-mode select {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #616161;
 }
 
 body.dark-mode .container {
-  border-color: rgb(23, 21, 162);
+  border-color: #616161;
+  background-color: #1e1e1e;
 }
 
 body.dark-mode .btn-primary {
-  background-color: #121212;
-  color: rgb(23, 21, 162);
-  border-color: rgb(23, 21, 162);
+  background-color: #2e2e2e;
+  color: #e0e0e0;
+  border-color: #616161;
 }
-body.dark-mode div#container div {
-  background-color:  #121212 !important;
-  color: rgb(23, 21, 162);
-  border-color: rgb(23, 21, 162);
+
+body.dark-mode #container div {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0;
+  border-color: #616161;
 }
 
 #notif {
   margin: 20px;
+}
+
+/* Styl dla przycisków */
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode .btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Styl dla inputów */
+input[type="text"], 
+input[type="password"], 
+select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+body.dark-mode input[type="text"], 
+body.dark-mode input[type="password"], 
+body.dark-mode select {
+  border-color: #616161;
+}
+
+/* Styl dla powiadomień */
+#notif {
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+body.dark-mode #notif {
+  background-color: #2e2e2e;
+  color: #f8d7da;
 }
