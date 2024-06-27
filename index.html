@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div id="login" class="container">
+        <form id="login-form">
+          <div class="login-field">
+            <input type="text" class="form-control" id="username" required placeholder="login"/>
+          </div>
+          <div class="login-field">
+            <input type="password" class="form-control" id="password" required placeholder="hasło"/>
+          </div>
+          <button type="submit" class="btn btn-primary">Zaloguj się</button>
+        </form>
+        <div id="error-message" class="text-danger hidden">Błędne hasło</div>
+        <button id="toggle-dark-mode" class="btn btn-secondary">Tryb ciemny</button>
+      </div>
+
+      <div id="notif">
+        <div id="notification-counter"></div>
+        <div id="notification-list"></div>
+      </div>
+      
+      <script type="module" src="./src/views/NotificationView.ts"></script>
+      <script type="module" src="./src/scripts/NotificationCounter.ts"></script>
+    </div>
+    <div id="app">
+      <header id="header"></header>
+      <div id="content"> </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+
+    <script>
+    ///////////////
+    /// Darkmode
+
+    const toggleButton = document.getElementById('toggle-dark-mode');
+      toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+      });
+
+    ////////////////////////////////////////////////////////////////
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+          document.getElementById('login').innerHTML = `
+            <div>
+              Zalogowany jako: ${user.username}
+              <button id="logout" class="btn btn-secondary">Wyloguj</button>
+            </div>
+          `;
+
+          document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            location.reload();
+          });
+        }
+      });
+
+      const form = document.getElementById('login-form');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        try {
+          const response = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+          });
+          if (!response.ok) {
+            throw new Error('Invalid credentials');
+          }
+          const data = await response.json();
+          console.log('Token:', data.token);
+          console.log('Refresh Token:', data.refreshToken);
+
+          // Przechowywanie tokenów w localStorage
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          // Wyświetlanie informacji o zalogowanym użytkowniku
+          document.getElementById('login').innerHTML = `
+            <div>
+              Zalogowany jako: ${data.user.username}
+              <button id="logout" class="btn btn-secondary">Wyloguj</button>
+            </div>
+          `;
+
+          // Dodanie funkcjonalności wylogowania
+          document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            location.reload();
+          });
+
+        } catch (error) {
+          document.getElementById('error-message').classList.remove('hidden');
+        }
+      });
+    </script>
+  </body>
+</html>

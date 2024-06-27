@@ -1,0 +1,81 @@
+#app {
+  margin: 100px 25% 0px;
+}
+.right-align {
+  float: right;
+}
+
+table {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+#top-bar {
+  height: 20px;
+
+  float:right
+
+}
+
+#login {
+  max-width: 550px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+
+}
+.login-field {
+  width: 200px;
+  float:left
+}
+
+#toggle-dark-mode {
+  margin-left: 400px;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: rgb(23, 21, 162);
+}
+
+body.dark-mode .card {
+  background-color: #121212;
+  border-color: rgb(23, 21, 162);
+}
+
+body.dark-mode input[type="text"],body.dark-mode input[type="password"],body.dark-mode .btn, body.dark-mode select {
+  background-color: #121212;
+  color: rgb(23, 21, 162);
+  border-color: rgb(23, 21, 162);
+}
+
+body.dark-mode .container {
+  border-color: rgb(23, 21, 162);
+}
+
+body.dark-mode .btn-primary {
+  background-color: #121212;
+  color: rgb(23, 21, 162);
+  border-color: rgb(23, 21, 162);
+}
+body.dark-mode div#container div {
+  background-color:  #121212 !important;
+  color: rgb(23, 21, 162);
+  border-color: rgb(23, 21, 162);
+}
+
+#notif {
+  margin: 20px;
+}
