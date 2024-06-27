@@ -60,8 +60,8 @@ async function displayProjects() {
             const displayString = document.createElement('div')
             displayString.className = 'card'
             let temp = `
-                <div class = 'card-title'><b>  ${entity.name}</b> </div> 
-                <div class = 'card-text'>  ${entity.description}
+                <div class = 'card-title'><b>Tytuł: ${entity.name}</b> </div> 
+                <div class = 'card-text'>Opis:  ${entity.description}
                     <div class="btn-group right-align">
                         <button type="button" class="btn btn-outline-secondary btn-open" data-id='${entity.id}'> 
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
